@@ -1,14 +1,22 @@
 import './App.css';
-import { getPeople, getCharacter } from './api/people';
+import { getPeople, getCharacter, searchCharacter } from './api/people'; 
 //import {getCharacter} from './api/apiDetails';
-import { useState, useEffect,useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 
 
 function App() {
-  //hooks: traer todos, ver el actual, detalles del actual, referencia al buscar
+ //traer todos los pjs.
   const [people, setPeople] = useState([]);
+
+  //ver el actual pj
   const [ongoingCharacter, setOngoingCharacter] = useState(1)
+
+  //detalles del actual pj:
   const [details, setDetails] = useState({})
+
+  //search
+  const inputSearchRef = useRef(null)
+  const [textSearch, setTextSearch ] = useState("")
 
   //useEffect para traer los datos de la api
   useEffect(() => {
@@ -28,20 +36,54 @@ function App() {
   const showDetails = (character) => {
     const id = Number(character.url.split('/').slice(-2)[0])
     setOngoingCharacter(id)
+  };
+
+  //Search engine:
+
+  const onChangeTextSearch = (e) => {
+    e.preventDefault()
+    const text = inputSearchRef.current.value;
+    setTextSearch(text);
+  };
+
+  const onSearchSubmit = (e) => {
+    if (e.key != "Enter") return
+    inputSearchRef.current.value = "";
+    setDetails({});
+    searchCharacter(textSearch)
+    .then((data)=>setPeople(data.results))
+    .catch((err) => { console.log(err) },[])
+
   }
+
+
+  //render:
   return (
 
     <div>
+{/* search */}
       <div>
-        <input type="text" placeholder ="Busca un personaje"/>
+        <input 
+        ref= {inputSearchRef} 
+        onChange={onChangeTextSearch}
+        onKeyDown = {onSearchSubmit}
+        type="text" 
+        placeholder ="Busca un personaje"/>
       </div>
+
+
+{/* mapeo de la lista */}
 
       <ul>
         {people.map((character) => (
           <li key={character.name} onClick={() => showDetails(character)}>{character.name}</li>
         ))}
       </ul>
+    
+      {/* details del elemento seleccionado */}
+      {details && (
       <>
+     
         <h2>{details.name}</h2>
         <ul>
           <li>Height: {details.height}</li>
@@ -49,6 +91,7 @@ function App() {
           <li>Birth: {details.birth_year}</li>
         </ul>
       </>
+      )}
     </div>
 
   )
