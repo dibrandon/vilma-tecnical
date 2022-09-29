@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect, useRef } from "react"
-import {Navbar2} from './navbar2';
+import Navbar2 from './components/Navbar2';
 import { getPeople, getCharacter, searchCharacter } from './api/people'; 
 //import {getCharacter} from './api/apiDetails';
 
