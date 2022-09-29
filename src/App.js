@@ -1,4 +1,4 @@
-import './App.css';
+import Navbar2 from './navbar2';
 import { getPeople, getCharacter, searchCharacter } from './api/people'; 
 //import {getCharacter} from './api/apiDetails';
 import { useState, useEffect, useRef } from "react"
@@ -34,8 +34,8 @@ function App() {
 
   //capacidad de cliquear y traaer la info del personaje.
   const showDetails = (character) => {
-    const id = Number(character.url.split('/').slice(-2)[0])
-    setOngoingCharacter(id)
+    const id = Number(character.url.split("/").slice(-2)[0]);
+    setOngoingCharacter(id);
   };
 
   //Search engine:
@@ -61,6 +61,7 @@ function App() {
   return (
 
     <div>
+      <Navbar2/>
 {/* search */}
       <div>
         <input 
