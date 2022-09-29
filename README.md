@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Software Engineer Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 
 Software Engineer Test
@@ -40,3 +40,8 @@ Puntos: completados:
 3)Completado, pero sin funcionar bien.
 4)Falto, responsive a completar en una rama secundaria.
 5)Falto, Paginacion a completar en una rama secundaria.
+
+
+
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
