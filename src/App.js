@@ -1,7 +1,9 @@
-import Navbar2 from './navbar2';
+import './App.css';
+import React, { useState, useEffect, useRef } from "react"
+import {Navbar2} from './navbar2';
 import { getPeople, getCharacter, searchCharacter } from './api/people'; 
 //import {getCharacter} from './api/apiDetails';
-import { useState, useEffect, useRef } from "react"
+
 
 
 function App() {
@@ -47,7 +49,7 @@ function App() {
   };
 
   const onSearchSubmit = (e) => {
-    if (e.key != "Enter") return
+    if (e.key !== "Enter") return
     inputSearchRef.current.value = "";
     setDetails({});
     searchCharacter(textSearch)
@@ -56,11 +58,9 @@ function App() {
 
   }
 
-
-  //render:
   return (
 
-    <div>
+ <div>
       <Navbar2/>
 {/* search */}
       <div>

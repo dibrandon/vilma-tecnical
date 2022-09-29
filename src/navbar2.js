@@ -1,9 +1,9 @@
-
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
 
-function Navbar2() {
+const Navbar2 =()=> {
   return (
 <div>
       <Navbar bg="light">
